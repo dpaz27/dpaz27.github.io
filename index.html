@@ -1,0 +1,1329 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>星空无限在线传媒 - 精彩内容,免费中文观看</title>
+<meta name="description" content="星空无限在线传媒观看免费中文，汇聚影视、综艺、纪录片与短剧，畅享高清免费中文内容。星空无限在线传媒让每一次观看都成为美好体验。">
+<style>
+:root{
+  --bg:#050714;
+  --bg2:#0a0e24;
+  --card:#101632;
+  --card2:#0d1230;
+  --line:rgba(120,150,255,.16);
+  --text:#e8ecff;
+  --muted:#9aa5cc;
+  --primary:#4f7bff;
+  --primary2:#7a5cff;
+  --accent:#25d0ff;
+  --gold:#ffcf6b;
+  --radius:18px;
+  --max:1200px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:"PingFang SC","HarmonyOS Sans SC","Microsoft YaHei",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.7;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(900px 600px at 82% -8%,rgba(122,92,255,.22),transparent 60%),
+    radial-gradient(800px 520px at 8% 4%,rgba(37,208,255,.14),transparent 62%),
+    radial-gradient(1000px 700px at 50% 120%,rgba(79,123,255,.16),transparent 60%);
+  pointer-events:none;
+  z-index:0;
+}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+ul{list-style:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+::selection{background:rgba(79,123,255,.42);color:#fff}
+
+/* ---------- 星空背景 ---------- */
+.stars{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.star{position:absolute;background:#fff;border-radius:50%;opacity:.7;animation:tw 4s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.2;transform:scale(.7)}50%{opacity:.9;transform:scale(1.15)}}
+
+/* ---------- 通用 ---------- */
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px;position:relative;z-index:1}
+.sec{padding:92px 0;position:relative;z-index:1}
+.sec-head{max-width:760px;margin:0 auto 56px;text-align:center}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;letter-spacing:.22em;color:var(--accent);
+  text-transform:uppercase;font-weight:600;margin-bottom:16px;
+}
+.eyebrow::before,.eyebrow::after{content:"";width:28px;height:1px;background:linear-gradient(90deg,transparent,var(--accent))}
+.eyebrow::after{background:linear-gradient(90deg,var(--accent),transparent)}
+h2{font-size:clamp(26px,3.4vw,40px);line-height:1.25;font-weight:800;letter-spacing:.01em}
+.sub{color:var(--muted);margin-top:16px;font-size:16px}
+.grad{background:linear-gradient(100deg,#8fb2ff,var(--accent) 45%,#b79bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ---------- 导航 ---------- */
+header{
+  position:sticky;top:0;z-index:50;
+  backdrop-filter:blur(18px);
+  background:rgba(5,7,20,.72);
+  border-bottom:1px solid var(--line);
+  transition:background .3s;
+}
+.nav{max-width:var(--max);margin:0 auto;padding:0 24px;height:70px;display:flex;align-items:center;gap:34px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:.04em;white-space:nowrap}
+.logo .mark{width:34px;height:34px;flex:none}
+.logo span{background:linear-gradient(100deg,#fff,#9cb6ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.nav-links{display:flex;gap:28px;margin-left:auto;font-size:15px;color:var(--muted)}
+.nav-links a{position:relative;transition:color .25s}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--primary),var(--accent));transition:width .3s}
+.nav-links a:hover{color:#fff}
+.nav-links a:hover::after{width:100%}
+.nav-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:9px 20px;border-radius:999px;font-size:14px;font-weight:700;
+  background:linear-gradient(120deg,var(--primary),var(--primary2));
+  color:#fff;box-shadow:0 8px 24px rgba(79,123,255,.35);
+  transition:transform .25s,box-shadow .25s;
+}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(79,123,255,.5)}
+.burger{display:none;width:42px;height:42px;border-radius:12px;border:1px solid var(--line);align-items:center;justify-content:center;margin-left:auto}
+.burger span{display:block;width:18px;height:2px;background:#fff;border-radius:2px;position:relative}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:18px;height:2px;background:#fff;border-radius:2px}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;padding:78px 0 96px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
+.hero h1{
+  font-size:clamp(38px,5.6vw,68px);
+  line-height:1.08;font-weight:900;letter-spacing:-.01em;
+  background:linear-gradient(115deg,#fff 20%,#a9c1ff 60%,#8f7bff);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero .tagline{font-size:clamp(17px,2vw,21px);color:#c3cdf0;margin-top:22px;max-width:560px}
+.hero .tagline b{color:var(--gold);font-weight:700}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:14px 28px;border-radius:999px;font-weight:700;font-size:15px;
+  transition:transform .25s,box-shadow .25s,background .25s;
+}
+.btn-main{background:linear-gradient(120deg,var(--primary),var(--primary2));color:#fff;box-shadow:0 12px 32px rgba(79,123,255,.4)}
+.btn-main:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(79,123,255,.55)}
+.btn-ghost{border:1px solid rgba(150,175,255,.35);color:#dfe6ff;background:rgba(120,150,255,.06)}
+.btn-ghost:hover{background:rgba(120,150,255,.14);transform:translateY(-3px)}
+.hero-stats{display:flex;gap:38px;margin-top:44px;flex-wrap:wrap}
+.hero-stats .st b{display:block;font-size:clamp(24px,2.8vw,32px);font-weight:800;background:linear-gradient(100deg,#fff,var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-stats .st span{font-size:13px;color:var(--muted);letter-spacing:.06em}
+
+/* hero visual */
+.hero-visual{position:relative;perspective:1200px}
+.planet{
+  position:relative;width:100%;aspect-ratio:1/1;max-width:460px;margin:0 auto;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 32% 28%,rgba(180,205,255,.9),rgba(79,123,255,.55) 30%,rgba(30,35,80,.9) 62%,#070a1c 78%);
+  box-shadow:
+    0 0 90px rgba(79,123,255,.35),
+    inset -30px -40px 90px rgba(0,0,0,.75),
+    inset 20px 20px 60px rgba(160,200,255,.25);
+  animation:float 8s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-16px) rotate(2deg)}}
+.planet::after{
+  content:"";position:absolute;inset:-14%;border-radius:50%;
+  border:2px solid rgba(120,160,255,.25);
+  transform:rotateX(74deg) rotateZ(-18deg);
+  box-shadow:0 0 40px rgba(37,208,255,.2);
+}
+.ring{
+  position:absolute;inset:-6%;border-radius:50%;
+  border:1px dashed rgba(150,180,255,.22);
+  animation:spin 26s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.orbit-dot{position:absolute;width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 18px var(--accent)}
+.orbit-dot.d1{top:8%;left:50%}
+.orbit-dot.d2{bottom:14%;left:12%;background:var(--gold);box-shadow:0 0 18px var(--gold)}
+.orbit-dot.d3{top:40%;right:2%;background:#b79bff;box-shadow:0 0 18px #b79bff}
+.play-float{
+  position:absolute;left:-14px;bottom:16px;
+  display:flex;align-items:center;gap:12px;
+  padding:12px 18px;border-radius:16px;
+  background:rgba(16,22,50,.82);border:1px solid var(--line);
+  backdrop-filter:blur(12px);
+  box-shadow:0 18px 40px rgba(0,0,0,.5);
+  animation:float 6s ease-in-out infinite;
+}
+.play-float .pi{width:38px;height:38px;border-radius:11px;background:linear-gradient(130deg,var(--primary),var(--primary2));display:grid;place-items:center;flex:none}
+.play-float small{display:block;color:var(--muted);font-size:11px;letter-spacing:.1em}
+.play-float b{font-size:14px}
+.badge-live{
+  position:absolute;top:10px;right:0;
+  display:flex;align-items:center;gap:8px;
+  padding:8px 16px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.08em;
+  background:rgba(255,60,100,.14);border:1px solid rgba(255,90,130,.4);color:#ff9db4;
+}
+.badge-live i{width:8px;height:8px;border-radius:50%;background:#ff4f74;animation:pulse 1.4s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+
+/* ---------- 信任条 ---------- */
+.trust{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(10,14,36,.5)}
+.trust-inner{max-width:var(--max);margin:0 auto;padding:22px 24px;display:flex;flex-wrap:wrap;gap:14px 46px;align-items:center;justify-content:center;color:var(--muted);font-size:14px}
+.trust-inner span{display:flex;align-items:center;gap:9px}
+.trust-inner svg{flex:none;opacity:.9}
+
+/* ---------- 内容矩阵 ---------- */
+.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.cat{
+  position:relative;padding:30px 26px;border-radius:var(--radius);
+  background:linear-gradient(160deg,var(--card),var(--card2));
+  border:1px solid var(--line);overflow:hidden;
+  transition:transform .3s,border-color .3s,box-shadow .3s;
+}
+.cat::before{
+  content:"";position:absolute;inset:0;opacity:0;transition:opacity .35s;
+  background:radial-gradient(300px 180px at 20% 0%,rgba(79,123,255,.28),transparent 70%);
+}
+.cat:hover{transform:translateY(-6px);border-color:rgba(120,160,255,.45);box-shadow:0 22px 50px rgba(0,0,0,.45)}
+.cat:hover::before{opacity:1}
+.cat .ico{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;margin-bottom:20px;background:rgba(79,123,255,.14);border:1px solid rgba(120,160,255,.28);position:relative;z-index:1}
+.cat h3{font-size:18px;font-weight:700;margin-bottom:10px;position:relative;z-index:1}
+.cat p{font-size:14px;color:var(--muted);position:relative;z-index:1}
+.cat .more{display:inline-flex;align-items:center;gap:6px;margin-top:18px;font-size:13px;color:var(--accent);font-weight:600;position:relative;z-index:1}
+.cat .more svg{transition:transform .3s}
+.cat:hover .more svg{transform:translateX(4px)}
+
+/* ---------- 精选内容 ---------- */
+.shows{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.show{
+  border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);
+  background:var(--card);transition:transform .3s,box-shadow .3s,border-color .3s;
+}
+.show:hover{transform:translateY(-8px);box-shadow:0 26px 56px rgba(0,0,0,.5);border-color:rgba(120,160,255,.4)}
+.cover{position:relative;aspect-ratio:16/9;overflow:hidden}
+.cover svg{width:100%;height:100%;transition:transform .5s}
+.show:hover .cover svg{transform:scale(1.06)}
+.cover .tag{
+  position:absolute;top:12px;left:12px;z-index:2;
+  padding:4px 11px;border-radius:7px;font-size:11px;font-weight:700;letter-spacing:.06em;
+  background:rgba(5,7,20,.66);border:1px solid rgba(160,190,255,.3);backdrop-filter:blur(6px);
+}
+.cover .dur{
+  position:absolute;bottom:12px;right:12px;z-index:2;
+  padding:3px 9px;border-radius:6px;font-size:11px;font-weight:600;
+  background:rgba(5,7,20,.7);
+}
+.cover .ply{
+  position:absolute;inset:0;display:grid;place-items:center;opacity:0;transition:opacity .3s;
+  background:linear-gradient(0deg,rgba(5,7,20,.55),transparent 60%);
+}
+.show:hover .ply{opacity:1}
+.ply .circle{width:58px;height:58px;border-radius:50%;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.5);display:grid;place-items:center;backdrop-filter:blur(4px);transform:scale(.85);transition:transform .3s}
+.show:hover .ply .circle{transform:scale(1)}
+.show-body{padding:20px 22px 24px}
+.show-body h3{font-size:17px;font-weight:700;margin-bottom:8px}
+.show-body p{font-size:13.5px;color:var(--muted);min-height:42px}
+.show-meta{display:flex;align-items:center;justify-content:space-between;margin-top:16px;font-size:12px;color:#8b97c2}
+.show-meta .score{display:flex;align-items:center;gap:5px;color:var(--gold);font-weight:700}
+
+/* ---------- 直播/剧场 ---------- */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.panel{
+  border-radius:22px;padding:38px;border:1px solid var(--line);
+  background:linear-gradient(155deg,rgba(20,27,60,.9),rgba(10,14,36,.9));
+  position:relative;overflow:hidden;
+}
+.panel::after{
+  content:"";position:absolute;width:320px;height:320px;border-radius:50%;
+  right:-110px;top:-110px;background:radial-gradient(circle,rgba(79,123,255,.28),transparent 65%);
+  pointer-events:none;
+}
+.panel h3{font-size:22px;font-weight:800;margin-bottom:12px}
+.panel > p{color:var(--muted);font-size:15px;max-width:420px}
+.panel-list{margin-top:26px;display:flex;flex-direction:column;gap:12px}
+.pl-item{display:flex;align-items:center;gap:14px;padding:13px 16px;border-radius:13px;background:rgba(255,255,255,.03);border:1px solid rgba(120,150,255,.1);transition:background .25s,transform .25s}
+.pl-item:hover{background:rgba(79,123,255,.12);transform:translateX(5px)}
+.pl-item .idx{font-size:12px;font-weight:800;color:var(--accent);width:22px;flex:none}
+.pl-item .nm{font-size:14.5px;font-weight:600}
+.pl-item .st{margin-left:auto;font-size:11.5px;padding:3px 10px;border-radius:99px;background:rgba(37,208,255,.12);color:var(--accent);border:1px solid rgba(37,208,255,.28)}
+.pl-item .st.warm{background:rgba(255,207,107,.1);color:var(--gold);border-color:rgba(255,207,107,.3)}
+
+/* ---------- 数据 ---------- */
+.stats-band{
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(10,14,36,.4),rgba(5,7,20,.2));
+}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:66px 0;text-align:center}
+.stat b{display:block;font-size:clamp(30px,4vw,46px);font-weight:900;letter-spacing:-.02em;background:linear-gradient(120deg,#fff,#7ea8ff 55%,var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat span{display:block;margin-top:8px;font-size:13.5px;color:var(--muted);letter-spacing:.06em}
+
+/* ---------- 会员 ---------- */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
+.plan{
+  border-radius:22px;padding:36px 30px;border:1px solid var(--line);
+  background:linear-gradient(170deg,var(--card),var(--card2));
+  display:flex;flex-direction:column;transition:transform .3s,box-shadow .3s;
+}
+.plan:hover{transform:translateY(-6px);box-shadow:0 24px 52px rgba(0,0,0,.5)}
+.plan.hot{border-color:rgba(122,92,255,.6);background:linear-gradient(170deg,rgba(40,42,110,.75),rgba(16,20,52,.95));position:relative}
+.plan.hot::before{
+  content:"推荐";position:absolute;top:20px;right:22px;
+  font-size:11px;font-weight:800;letter-spacing:.12em;padding:4px 12px;border-radius:99px;
+  background:linear-gradient(120deg,var(--primary),var(--primary2));color:#fff;
+}
+.plan .pn{font-size:17px;font-weight:800;color:#cfe0ff}
+.plan .price{margin:18px 0 6px;font-size:42px;font-weight:900;letter-spacing:-.02em}
+.plan .price small{font-size:14px;font-weight:500;color:var(--muted);margin-left:6px}
+.plan .desc{font-size:13.5px;color:var(--muted);min-height:40px}
+.plan ul{margin:26px 0;display:flex;flex-direction:column;gap:12px;font-size:14px;color:#c6cff0}
+.plan li{display:flex;gap:10px;align-items:flex-start}
+.plan li svg{flex:none;margin-top:4px}
+.plan .btn{justify-content:center;margin-top:auto}
+
+/* ---------- 创作者 ---------- */
+.creators{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.creator{
+  border-radius:18px;padding:26px 22px;text-align:center;
+  border:1px solid var(--line);background:rgba(16,22,50,.7);
+  transition:transform .3s,border-color .3s,background .3s;
+}
+.creator:hover{transform:translateY(-6px);border-color:rgba(120,160,255,.45);background:rgba(24,32,72,.85)}
+.avatar{width:76px;height:76px;border-radius:50%;margin:0 auto 16px;border:2px solid rgba(140,175,255,.45);overflow:hidden}
+.creator h4{font-size:15.5px;font-weight:700}
+.creator p{font-size:12.5px;color:var(--muted);margin-top:6px}
+.creator .cnt{margin-top:12px;font-size:12px;color:var(--accent);font-weight:700;letter-spacing:.04em}
+
+/* ---------- 时间线/流程 ---------- */
+.steps{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.steps::before{
+  content:"";position:absolute;top:30px;left:8%;right:8%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(120,160,255,.4),rgba(120,160,255,.4),transparent);
+}
+.step{text-align:center;position:relative}
+.step .n{
+  width:60px;height:60px;border-radius:50%;margin:0 auto 20px;
+  display:grid;place-items:center;font-weight:900;font-size:19px;
+  background:linear-gradient(150deg,rgba(79,123,255,.28),rgba(122,92,255,.18));
+  border:1px solid rgba(140,175,255,.45);color:#cfe0ff;
+  box-shadow:0 0 30px rgba(79,123,255,.25);
+}
+.step h4{font-size:16px;font-weight:700;margin-bottom:8px}
+.step p{font-size:13.5px;color:var(--muted)}
+
+/* ---------- 评价 ---------- */
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.quote{
+  border-radius:18px;padding:30px 28px;border:1px solid var(--line);
+  background:linear-gradient(160deg,rgba(18,24,56,.9),rgba(11,15,38,.9));
+  display:flex;flex-direction:column;transition:transform .3s,border-color .3s;
+}
+.quote:hover{transform:translateY(-5px);border-color:rgba(120,160,255,.4)}
+.quote .stars5{display:flex;gap:3px;margin-bottom:16px}
+.quote p{font-size:14.5px;color:#c8d1ef;flex:1}
+.quote .who{display:flex;align-items:center;gap:12px;margin-top:22px}
+.quote .who .av{width:40px;height:40px;border-radius:50%;overflow:hidden;flex:none}
+.quote .who b{font-size:13.5px;display:block}
+.quote .who small{font-size:11.5px;color:var(--muted)}
+
+/* ---------- FAQ ---------- */
+.faq{max-width:840px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.qitem{border-radius:14px;border:1px solid var(--line);background:rgba(16,22,50,.65);overflow:hidden;transition:border-color .3s}
+.qitem.open{border-color:rgba(120,160,255,.45)}
+.qhead{width:100%;display:flex;align-items:center;gap:16px;padding:20px 24px;text-align:left;font-size:15.5px;font-weight:600}
+.qhead .plus{margin-left:auto;flex:none;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;background:rgba(79,123,255,.14);transition:transform .3s}
+.qitem.open .qhead .plus{transform:rotate(45deg);background:rgba(79,123,255,.3)}
+.qbody{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.qbody p{padding:0 24px 22px;color:var(--muted);font-size:14px}
+
+/* ---------- CTA ---------- */
+.cta-band{
+  position:relative;border-radius:28px;overflow:hidden;
+  padding:70px 48px;text-align:center;
+  background:
+    radial-gradient(600px 300px at 50% -20%,rgba(122,92,255,.45),transparent 70%),
+    linear-gradient(160deg,#141b44,#0a0e28);
+  border:1px solid rgba(120,160,255,.3);
+}
+.cta-band h2{margin-bottom:16px}
+.cta-band p{color:var(--muted);max-width:560px;margin:0 auto}
+.cta-band .hero-actions{justify-content:center}
+
+/* ---------- Footer ---------- */
+footer{border-top:1px solid var(--line);background:rgba(5,7,20,.7);padding:64px 0 30px;position:relative;z-index:1}
+.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px}
+.foot-brand p{color:var(--muted);font-size:13.5px;margin-top:16px;max-width:320px}
+.foot-col h5{font-size:14px;font-weight:700;margin-bottom:18px;color:#dfe6ff}
+.foot-col a{display:block;font-size:13.5px;color:var(--muted);margin-bottom:12px;transition:color .25s}
+.foot-col a:hover{color:var(--accent)}
+.foot-bottom{
+  margin-top:52px;padding-top:26px;border-top:1px solid var(--line);
+  display:flex;flex-wrap:wrap;gap:14px 30px;justify-content:space-between;
+  font-size:12.5px;color:#7c88b0;
+}
+.foot-bottom .links{display:flex;gap:22px;flex-wrap:wrap}
+.foot-bottom a:hover{color:var(--accent)}
+
+/* ---------- 响应式 ---------- */
+@media(max-width:1024px){
+  .hero-grid{grid-template-columns:1fr;gap:50px}
+  .hero-visual{order:-1;max-width:420px;margin:0 auto}
+  .cats{grid-template-columns:repeat(2,1fr)}
+  .shows{grid-template-columns:repeat(2,1fr)}
+  .creators{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:repeat(2,1fr);row-gap:36px}
+  .steps::before{display:none}
+  .plans{grid-template-columns:1fr}
+  .quotes{grid-template-columns:1fr}
+  .split{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:repeat(2,1fr);row-gap:40px}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:760px){
+  .nav-links{display:none}
+  .nav-cta{display:none}
+  .burger{display:flex}
+  .mobile-menu{display:none;position:fixed;inset:70px 0 0;background:rgba(5,7,20,.97);z-index:49;padding:30px 24px;flex-direction:column;gap:8px;backdrop-filter:blur(14px)}
+  .mobile-menu.on{display:flex}
+  .mobile-menu a{padding:15px 0;border-bottom:1px solid var(--line);font-size:16px;color:#cfd8f5}
+  .sec{padding:66px 0}
+  .hero{padding:44px 0 66px}
+  .cats,.shows,.creators{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .panel{padding:28px 22px}
+  .cta-band{padding:52px 24px}
+  .foot-grid{grid-template-columns:1fr;gap:32px}
+  .hero-stats{gap:26px}
+}
+</style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<div class="stars" id="stars" aria-hidden="true"></div>
+
+<!-- ================= HEADER ================= -->
+<header id="site-header">
+  <div class="nav">
+    <a href="#top" class="logo">
+      <svg class="mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="lg1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#6f9bff"/><stop offset=".55" stop-color="#7a5cff"/><stop offset="1" stop-color="#25d0ff"/>
+          </linearGradient>
+        </defs>
+        <circle cx="20" cy="20" r="18" stroke="url(#lg1)" stroke-width="2"/>
+        <path d="M16 13.5 27 20l-11 6.5z" fill="url(#lg1)"/>
+        <circle cx="32" cy="9" r="2.2" fill="#25d0ff"/>
+        <circle cx="8" cy="30" r="1.6" fill="#ffcf6b"/>
+      </svg>
+      <span>星空无限</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#content">内容矩阵</a>
+      <a href="#featured">精选推荐</a>
+      <a href="#live">星空剧场</a>
+      <a href="#plans">会员权益</a>
+      <a href="#faq">常见问题</a>
+    </nav>
+    <a href="#plans" class="nav-cta">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9z"/></svg>
+      免费观看
+    </a>
+    <button class="burger" id="burger" aria-label="打开菜单"><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#content">内容矩阵</a>
+    <a href="#featured">精选推荐</a>
+    <a href="#live">星空剧场</a>
+    <a href="#plans">会员权益</a>
+    <a href="#faq">常见问题</a>
+    <a href="#plans" style="color:#25d0ff;font-weight:700">免费观看 →</a>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">STAR INFINITE MEDIA</div>
+      <h1>星空无限在线传媒观看免费中文</h1>
+      <p class="tagline">把好内容放进夜空，让每一次点开都值得。星空无限在线传媒聚合影视、综艺、纪录片与短剧，<b>免费中文观看</b>，随时开启属于你的光影旅程。</p>
+      <div class="hero-actions">
+        <a href="#featured" class="btn btn-main">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          立即免费观看
+        </a>
+        <a href="#content" class="btn btn-ghost">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
+          浏览内容矩阵
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="st"><b>12,000+</b><span>部影视内容</span></div>
+        <div class="st"><b>6.8 亿</b><span>累计播放</span></div>
+        <div class="st"><b>4.9 / 5</b><span>用户口碑评分</span></div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="planet">
+        <div class="ring"></div>
+        <div class="orbit-dot d1"></div>
+        <div class="orbit-dot d2"></div>
+        <div class="orbit-dot d3"></div>
+      </div>
+      <div class="badge-live"><i></i>LIVE · 星空直播间</div>
+      <div class="play-float">
+        <div class="pi">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <div>
+          <small>正在热播</small>
+          <b>星海纪行 · 第 3 集</b>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TRUST ================= -->
+<div class="trust">
+  <div class="trust-inner">
+    <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#25d0ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.9 6.2 6.8.9-5 4.6 1.3 6.7L12 17.8 5.9 20.4 7.2 13.7 2.2 9.1l6.8-.9z"/></svg>高清画质 · 多端同步</span>
+    <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#25d0ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>正版授权 · 安全观看</span>
+    <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#25d0ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H5.2L4 18.5z"/></svg>全站中文字幕</span>
+    <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#25d0ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>每日更新 · 不间断</span>
+  </div>
+</div>
+
+<!-- ================= CONTENT MATRIX ================= -->
+<section class="sec" id="content">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">CONTENT MATRIX</div>
+      <h2>一片星空，<span class="grad">四种打开方式</span></h2>
+      <p class="sub">从长片到短剧，从纪实到综艺，星空无限在线传媒以多元内容矩阵覆盖不同观看心情。全部支持免费中文观看。</p>
+    </div>
+
+    <div class="cats">
+      <div class="cat">
+        <div class="ico">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7ea8ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M7 5v14M17 5v14M2 10h5M17 10h5M2 14h5M17 14h5"/></svg>
+        </div>
+        <h3>电影长片</h3>
+        <p>华语佳作与海外精选并重，类型齐全，画质稳定，周末一次的沉浸式观影。</p>
+        <a href="#featured" class="more">查看片单 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="cat">
+        <div class="ico">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#b79bff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg>
+        </div>
+        <h3>综艺娱乐</h3>
+        <p>音乐、喜剧、真人秀与青年文化节目，轻快节奏陪你度过碎片时间。</p>
+        <a href="#featured" class="more">查看片单 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="cat">
+        <div class="ico">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#25d0ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg>
+        </div>
+        <h3>纪录片</h3>
+        <p>自然、人文、科技与城市观察，用真实镜头打开世界的另一面。</p>
+        <a href="#featured" class="more">查看片单 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="cat">
+        <div class="ico">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffcf6b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 6h2"/></svg>
+        </div>
+        <h3>微短剧</h3>
+        <p>三分钟一集，高密度剧情与强反转，通勤路上也能刷完一个故事。</p>
+        <a href="#featured" class="more">查看片单 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FEATURED ================= -->
+<section class="sec" id="featured" style="background:linear-gradient(180deg,transparent,rgba(10,14,36,.55),transparent)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">EDITOR'S PICKS</div>
+      <h2>本周<span class="grad">精选推荐</span></h2>
+      <p class="sub">编辑团队每周人工筛选，兼顾热度与口碑。以下内容均可在星空无限在线传媒免费中文观看。</p>
+    </div>
+
+    <div class="shows">
+      <!-- card 1 -->
+      <article class="show">
+        <div class="cover">
+          <span class="tag">电影 · 剧情</span>
+          <span class="dur">118 分钟</span>
+          <svg viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs>
+              <linearGradient id="c1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#1a2b6b"/><stop offset=".55" stop-color="#2b3a8c"/><stop offset="1" stop-color="#0c1030"/>
+              </linearGradient>
+              <radialGradient id="c1r" cx=".3" cy=".25" r=".7">
+                <stop offset="0" stop-color="#7fb2ff" stop-opacity=".85"/><stop offset="1" stop-color="#7fb2ff" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="400" height="225" fill="url(#c1)"/>
+            <rect width="400" height="225" fill="url(#c1r)"/>
+            <circle cx="300" cy="60" r="34" fill="#dfe9ff" opacity=".9"/>
+            <circle cx="312" cy="52" r="30" fill="#26307a"/>
+            <path d="M0 170 Q90 120 180 160 T400 140 V225 H0Z" fill="#0a0f28" opacity=".9"/>
+            <path d="M0 190 Q110 150 210 185 T400 175 V225 H0Z" fill="#05081a"/>
+            <g fill="#fff" opacity=".75">
+              <circle cx="60" cy="40" r="1.6"/><circle cx="110" cy="65" r="1.2"/><circle cx="160" cy="30" r="1.8"/>
+              <circle cx="210" cy="80" r="1.3"/><circle cx="350" cy="120" r="1.5"/><circle cx="40" cy="95" r="1.2"/>
+            </g>
+          </svg>
+          <div class="ply"><div class="circle"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div></div>
+        </div>
+        <div class="show-body">
+          <h3>星海纪行</h3>
+          <p>一名天文观测者穿越四季，在城市与荒野之间寻找属于自己的那颗星。</p>
+          <div class="show-meta">
+            <span class="score">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.2 6.8.9-5 4.6 1.3 6.7L12 17.8 5.9 20.4 7.2 13.7 2.2 9.1l6.8-.9z"/></svg>
+              9.2
+            </span>
+            <span>1,240 万次观看</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- card 2 -->
+      <article class="show">
+        <div class="cover">
+          <span class="tag">纪录片 · 自然</span>
+          <span class="dur">6 集全</span>
+          <svg viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs>
+              <linearGradient id="c2" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#063a3f"/><stop offset=".5" stop-color="#0b6b63"/><stop offset="1" stop-color="#05202a"/>
+              </linearGradient>
+              <radialGradient id="c2r" cx=".75" cy=".2" r=".6">
+                <stop offset="0" stop-color="#6fe6d2" stop-opacity=".55"/><stop offset="1" stop-color="#6fe6d2" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="400" height="225" fill="url(#c2)"/>
+            <rect width="400" height="225" fill="url(#c2r)"/>
+            <path d="M0 150 L70 90 L130 150 Z" fill="#05343a" opacity=".95"/>
+            <path d="M90 160 L180 70 L270 160 Z" fill="#04282e" opacity=".95"/>
+            <path d="M230 155 L320 95 L400 160 L400 225 L230 225 Z" fill="#032026"/>
+            <path d="M0 178 Q80 150 150 175 T400 168 V225 H0Z" fill="#021418"/>
+            <g stroke="#8ff0dd" stroke-width="1.4" opacity=".45" fill="none">
+              <path d="M20 190 q30 -12 60 0"/><path d="M120 196 q34 -14 68 0"/><path d="M250 192 q32 -12 64 0"/>
+            </g>
+            <circle cx="330" cy="48" r="2" fill="#bff7ec"/>
+          </svg>
+          <div class="ply"><div class="circle"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div></div>
+        </div>
+        <div class="show-body">
+          <h3>潮汐之间</h3>
+          <p>记录海岸线上一整年的生态变化，聆听潮水与生命共同写下的节律。</p>
+          <div class="show-meta">
+            <span class="score">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.2 6.8.9-5 4.6 1.3 6.7L12 17.8 5.9 20.4 7.2 13.7 2.2 9.1l6.8-.9z"/></svg>
+              9.5
+            </span>
+            <span>860 万次观看</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- card 3 -->
+      <article class="show">
+        <div class="cover">
+          <span class="tag">综艺 · 音乐</span>
+          <span class="dur">12 期</span>
+          <svg viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs>
+              <linearGradient id="c3" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#3a1550"/><stop offset=".5" stop-color="#6b2a8a"/><stop offset="1" stop-color="#1a0b28"/>
+              </linearGradient>
+              <linearGradient id="c3w" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#ffb4e6" stop-opacity=".9"/><stop offset="1" stop-color="#ffb4e6" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="225" fill="url(#c3)"/>
+            <g opacity=".85">
+              <rect x="60" y="60" width="14" height="70" rx="7" fill="url(#c3w)"/>
+              <rect x="92" y="40" width="14" height="110" rx="7" fill="url(#c3w)"/>
+              <rect x="124" y="80" width="14" height="60" rx="7" fill="url(#c3w)"/>
+              <rect x="156" y="55" width="14" height="90" rx="7" fill="url(#c3w)"/>
+              <rect x="188" y="30" width="14" height="130" rx="7" fill="url(#c3w)"/>
+              <rect x="220" y="72" width="14" height="70" rx="7" fill="url(#c3w)"/>
+              <rect x="252" y="48" width="14" height="100" rx="7" fill="url(#c3w)"/>
+              <rect x="284" y="84" width="14" height="56" rx="7" fill="url(#c3w)"/>
+              <rect x="316" y="38" width="14" height="112" rx="7" fill="url(#c3w)"/>
+            </g>
+            <circle cx="340" cy="40" r="26" fill="#ffd9f3" opacity=".22"/>
+            <g fill="#fff" opacity=".7">
+              <circle cx="50" cy="30" r="1.5"/><circle cx="370" cy="150" r="1.4"/><circle cx="30" cy="170" r="1.2"/>
+            </g>
+          </svg>
+          <div class="ply"><div class="circle"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div></div>
+        </div>
+        <div class="show-body">
+          <h3>夜航舞台</h3>
+          <p>年轻音乐人登上夜间舞台，用一首原创作品讲述此刻的自己。</p>
+          <div class="show-meta">
+            <span class="score">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.2 6.8.9-5 4.6 1.3 6.7L12 17.8 5.9 20.4 7.2 13.7 2.2 9.1l6.8-.9z"/></svg>
+              8.9
+            </span>
+            <span>1,560 万次观看</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- card 4 -->
+      <article class="show">
+        <div class="cover">
+          <span class="tag">短剧 · 都市</span>
+          <span class="dur">24 集</span>
+          <svg viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs>
+              <linearGradient id="c4" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#2b1030"/><stop offset=".55" stop-color="#7a2b46"/><stop offset="1" stop-color="#140820"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="225" fill="url(#c4)"/>
+            <g fill="#0a0514" opacity=".92">
+              <rect x="20" y="90" width="46" height="135"/>
+              <rect x="80" y="55" width="54" height="170"/>
+              <rect x="148" y="105" width="42" height="120"/>
+              <rect x="204" y="35" width="58" height="190"/>
+              <rect x="276" y="82" width="46" height="143"/>
+              <rect x="336" y="60" width="50" height="165"/>
+            </g>
+            <g fill="#ffcf6b" opacity=".65">
+              <rect x="92" y="72" width="7" height="9"/><rect x="106" y="72" width="7" height="9"/>
+              <rect x="92" y="92" width="7" height="9"/><rect x="120" y="92" width="7" height="9"/>
+              <rect x="216" y="52" width="7" height="9"/><rect x="234" y="52" width="7" height="9"/>
+              <rect x="216" y="76" width="7" height="9"/><rect x="248" y="76" width="7" height="9"/>
+              <rect x="288" y="100" width="7" height="9"/><rect x="302" y="100" width="7" height="9"/>
+            </g>
+            <circle cx="60" cy="40" r="20" fill="#ffcf6b" opacity=".16"/>
+          </svg>
+          <div class="ply"><div class="circle"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div></div>
+        </div>
+        <div class="show-body">
+          <h3>七楼来信</h3>
+          <p>一封寄错楼层的信，让两个陌生人的生活意外交叉，故事就此展开。</p>
+          <div class="show-meta">
+            <span class="score">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.2 6.8.9-5 4.6 1.3 6.7L12 17.8 5.9 20.4 7.2 13.7 2.2 9.1l6.8-.9z"/></svg>
+              8.7
+            </span>
+            <span>2,340 万次观看</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- card 5 -->
+      <article class="show">
+        <div class="cover">
+          <span class="tag">动画 · 幻想</span>
+          <span class="dur">16 集全</span>
+          <svg viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs>
+              <linearGradient id="c5" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#0b2e6b"/><stop offset=".5" stop-color="#2255b8"/><stop offset="1" stop-color="#081530"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="225" fill="url(#c5)"/>
+            <g fill="#fff" opacity=".85">
+              <circle cx="40" cy="40" r="2"/><circle cx="90" cy="26" r="1.4"/><circle cx="150" cy="50" r="1.8"/>
+              <circle cx="220" cy="30" r="1.5"/><circle cx="290" cy="56" r="2"/><circle cx="350" cy="34" r="1.3"/>
+              <circle cx="60" cy="100" r="1.4"/><circle cx="360" cy="110" r="1.7"/>
+            </g>
+            <path d="M170 150 Q200 40 232 150" stroke="#a9c9ff" stroke-width="2" fill="none" opacity=".7"/>
+            <path d="M140 160 Q200 90 262 160" stroke="#7fb2ff" stroke-width="1.6" fill="none" opacity=".55"/>
+            <path d="M110 170 Q200 130 292 170" stroke="#5f8cff" stroke-width="1.4" fill="none" opacity=".4"/>
+            <circle cx="200" cy="150" r="30" fill="#dbe8ff" opacity=".18"/>
+            <circle cx="200" cy="150" r="14" fill="#eaf2ff" opacity=".8"/>
+            <path d="M0 200 Q100 170 200 196 T400 188 V225 H0Z" fill="#05102a"/>
+          </svg>
+          <div class="ply"><div class="circle"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div></div>
+        </div>
+        <div class="show-body">
+          <h3>浮岛航线</h3>
+          <p>少年驾驶自制飞行器穿越浮空群岛，寻找传说中会发光的海面。</p>
+          <div class="show-meta">
+            <span class="score">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.2 6.8.9-5 4.6 1.3 6.7L12 17.8 5.9 20.4 7.2 13.7 2.2 9.1l6.8-.9z"/></svg>
+              9.1
+            </span>
+            <span>1,020 万次观看</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- card 6 -->
+      <article class="show">
+        <div class="cover">
+          <span class="tag">访谈 · 人文</span>
+          <span class="dur">10 期</span>
+          <svg viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs>
+              <linearGradient id="c6" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#2c2410"/><stop offset=".5" stop-color="#6b5322"/><stop offset="1" stop-color="#181206"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="225" fill="url(#c6)"/>
+            <circle cx="200" cy="110" r="72" fill="#ffcf6b" opacity=".1"/>
+            <circle cx="200" cy="110" r="44" fill="#ffcf6b" opacity=".14"/>
+            <g stroke="#ffd88a" stroke-width="1.6" fill="none" opacity=".7">
+              <path d="M200 40 V70"/><path d="M200 150 V180"/><path d="M130 110 H160"/><path d="M240 110 H270"/>
+              <path d="M150 60 l20 20"/><path d="M230 140 l20 20"/><path d="M250 60 l-20 20"/><path d="M170 140 l-20 20"/>
+            </g>
+            <path d="M0 190 Q100 165 200 185 T400 178 V225 H0Z" fill="#0d0a04"/>
+            <g fill="#fff" opacity=".6">
+              <circle cx="50" cy="50" r="1.5"/><circle cx="340" cy="60" r="1.6"/><circle cx="300" cy="180" r="1.2"/>
+            </g>
+          </svg>
+          <div class="ply"><div class="circle"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div></div>
+        </div>
+        <div class="show-body">
+          <h3>慢下来的人</h3>
+          <p>走进十位普通人的日常，看他们如何在自己的节奏里找到热爱与坚持。</p>
+          <div class="show-meta">
+            <span class="score">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.2 6.8.9-5 4.6 1.3 6.7L12 17.8 5.9 20.4 7.2 13.7 2.2 9.1l6.8-.9z"/></svg>
+              9.3
+            </span>
+            <span>640 万次观看</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LIVE / THEATER ================= -->
+<section class="sec" id="live">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">STAR THEATER</div>
+      <h2>星空剧场，<span class="grad">正在发生</span></h2>
+      <p class="sub">直播间、放映厅与创作者专栏同步运转。星空无限在线传媒的社区，每天都在产生新的讨论与新的故事。</p>
+    </div>
+
+    <div class="split">
+      <div class="panel">
+        <h3>星空直播间</h3>
+        <p>每天固定时段开播，主创对谈、幕后花絮、实时影评，观众弹幕与主播同屏互动。</p>
+        <div class="panel-list">
+          <div class="pl-item"><span class="idx">01</span><span class="nm">《星海纪行》主创对谈</span><span class="st">直播中</span></div>
+          <div class="pl-item"><span class="idx">02</span><span class="nm">纪录片拍摄幕后分享</span><span class="st">今晚 20:00</span></div>
+          <div class="pl-item"><span class="idx">03</span><span class="nm">短剧编剧圆桌</span><span class="st warm">明晚 19:30</span></div>
+          <div class="pl-item"><span class="idx">04</span><span class="nm">观众投票 · 本周片单</span><span class="st warm">进行中</span></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>放映厅排期</h3>
+        <p>主题策划每月更新，从城市漫游到宇宙想象，用一条线索把内容串成一次完整观看。</p>
+        <div class="panel-list">
+          <div class="pl-item"><span class="idx">A</span><span class="nm">主题月 · 城市与夜</span><span class="st">12 部影片</span></div>
+          <div class="pl-item"><span class="idx">B</span><span class="nm">新导演计划 · 短片集</span><span class="st">8 部作品</span></div>
+          <div class="pl-item"><span class="idx">C</span><span class="nm">合家欢 · 周末精选</span><span class="st warm">每周更新</span></div>
+          <div class="pl-item"><span class="idx">D</span><span class="nm">会员专属首映</span><span class="st warm">每周五</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATS ================= -->
+<div class="stats-band">
+  <div class="wrap">
+    <div class="stats-grid">
+      <div class="stat"><b>12,000+</b><span>影视与专题内容</span></div>
+      <div class="stat"><b>6.8 亿</b><span>累计播放次数</span></div>
+      <div class="stat"><b>380 万</b><span>活跃社区用户</span></div>
+      <div class="stat"><b>98%</b><span>观看满意度</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= CREATORS ================= -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">CREATORS</div>
+      <h2>与创作者<span class="grad">一起发光</span></h2>
+      <p class="sub">星空无限在线传媒持续扶持内容创作者，从剧本孵化到拍摄支持，让好想法被更多人看见。</p>
+    </div>
+
+    <div class="creators">
+      <div class="creator">
+        <div class="avatar">
+          <svg viewBox="0 0 76 76" aria-hidden="true">
+            <defs><linearGradient id="a1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7fb2ff"/><stop offset="1" stop-color="#6a5bff"/></linearGradient></defs>
+            <rect width="76" height="76" fill="url(#a1)"/>
+            <circle cx="38" cy="30" r="13" fill="#e9f0ff" opacity=".92"/>
+            <path d="M12 76 Q38 46 64 76Z" fill="#e9f0ff" opacity=".85"/>
+          </svg>
+        </div>
+        <h4>林一州</h4>
+        <p>纪录片导演 · 城市观察</p>
+        <div class="cnt">14 部作品 · 86 万关注</div>
+      </div>
+      <div class="creator">
+        <div class="avatar">
+          <svg viewBox="0 0 76 76" aria-hidden="true">
+            <defs><linearGradient id="a2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffcf6b"/><stop offset="1" stop-color="#ff7fa8"/></linearGradient></defs>
+            <rect width="76" height="76" fill="url(#a2)"/>
+            <circle cx="38" cy="30" r="13" fill="#fff6e0" opacity=".95"/>
+            <path d="M12 76 Q38 46 64 76Z" fill="#fff6e0" opacity=".88"/>
+          </svg>
+        </div>
+        <h4>苏见海</h4>
+        <p>编剧 · 微短剧创作</p>
+        <div class="cnt">31 部作品 · 152 万关注</div>
+      </div>
+      <div class="creator">
+        <div class="avatar">
+          <svg viewBox="0 0 76 76" aria-hidden="true">
+            <defs><linearGradient id="a3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#25d0ff"/><stop offset="1" stop-color="#2f7bff"/></linearGradient></defs>
+            <rect width="76" height="76" fill="url(#a3)"/>
+            <circle cx="38" cy="30" r="13" fill="#e6fbff" opacity=".95"/>
+            <path d="M12 76 Q38 46 64 76Z" fill="#e6fbff" opacity=".88"/>
+          </svg>
+        </div>
+        <h4>周未白</h4>
+        <p>影像配乐 · 声音设计</p>
+        <div class="cnt">22 个项目 · 64 万关注</div>
+      </div>
+      <div class="creator">
+        <div class="avatar">
+          <svg viewBox="0 0 76 76" aria-hidden="true">
+            <defs><linearGradient id="a4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b79bff"/><stop offset="1" stop-color="#5f8cff"/></linearGradient></defs>
+            <rect width="76" height="76" fill="url(#a4)"/>
+            <circle cx="38" cy="30" r="13" fill="#f0ebff" opacity=".95"/>
+            <path d="M12 76 Q38 46 64 76Z" fill="#f0ebff" opacity=".88"/>
+          </svg>
+        </div>
+        <h4>叶青禾</h4>
+        <p>动画作者 · 分镜设计</p>
+        <div class="cnt">9 部作品 · 47 万关注</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STEPS ================= -->
+<section class="sec" style="background:linear-gradient(180deg,transparent,rgba(10,14,36,.55),transparent)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">HOW IT WORKS</div>
+      <h2>四步开始<span class="grad">免费观看</span></h2>
+      <p class="sub">无需复杂设置，打开就能看。星空无限在线传媒把观看流程做得足够轻。</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="n">1</div>
+        <h4>打开页面</h4>
+        <p>在浏览器直接访问官网，无需下载任何插件或安装包。</p>
+      </div>
+      <div class="step">
+        <div class="n">2</div>
+        <h4>挑选内容</h4>
+        <p>按类型、热度或编辑推荐浏览，快速找到想看的作品。</p>
+      </div>
+      <div class="step">
+        <div class="n">3</div>
+        <h4>开始观看</h4>
+        <p>点击播放即可，中文字幕默认开启，画质自动适配网络。</p>
+      </div>
+      <div class="step">
+        <div class="n">4</div>
+        <h4>收藏与追更</h4>
+        <p>加入收藏夹，剧集更新自动提示，不错过任何一集。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PLANS ================= -->
+<section class="sec" id="plans">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">MEMBERSHIP</div>
+      <h2>免费观看，<span class="grad">也有更好选择</span></h2>
+      <p class="sub">基础内容永久免费。如果你想要更高画质与更多权益，可以选择适合的会员方案。</p>
+    </div>
+
+    <div class="plans">
+      <div class="plan">
+        <div class="pn">免费用户</div>
+        <div class="price">¥0<small>/ 永久</small></div>
+        <div class="desc">无需注册也能浏览与观看基础内容，体验完整的中文观看服务。</div>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#25d0ff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>基础片库免费观看</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#25d0ff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>1080P 高清画质</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#25d0ff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>全站中文字幕</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#25d0ff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>社区评论与收藏</li>
+        </ul>
+        <a href="#top" class="btn btn-ghost">立即开始</a>
+      </div>
+
+      <div class="plan hot">
+        <div class="pn">星空会员</div>
+        <div class="price">¥18<small>/ 月</small></div>
+        <div class="desc">面向高频观看用户的综合方案，解锁更高画质与专属内容。</div>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffcf6b" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>基础片库全部免费</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffcf6b" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>4K 超清与 HDR</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffcf6b" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>会员专属首映场</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffcf6b" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>多端同步与离线缓存</li>
+        </ul>
+        <a href="#top" class="btn btn-main">开通会员</a>
+      </div>
+
+      <div class="plan">
+        <div class="pn">家庭共享</div>
+        <div class="price">¥32<small>/ 月</small></div>
+        <div class="desc">最多支持 4 个账号共享权益，适合家庭或小团队一起使用。</div>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b79bff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>含星空会员全部权益</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b79bff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>4 个账号独立使用</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b79bff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>儿童模式与观看限制</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b79bff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>家庭观看报告</li>
+        </ul>
+        <a href="#top" class="btn btn-ghost">了解详情</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= QUOTES ================= -->
+<section class="sec" style="background:linear-gradient(180deg,transparent,rgba(10,14,36,.55),transparent)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">COMMUNITY VOICES</div>
+      <h2>他们<span class="grad">这样说</span></h2>
+      <p class="sub">来自真实观众的反馈，是星空无限在线传媒持续迭代内容的动力。</p>
+    </div>
+    <div class="quotes">
+      <div class="quote">
+        <div class="stars5">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#ffcf6b"><path d="M12 2l2.9 6.2 6.8.9-5 4.6 1.3 6.7L12 17.8 5.9 20.4 7.2 13.7 2.2 9.1l6.8-.9z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#ffcf6b"><path d="M12 2l2.9 6.2 6.8.9-5 4.6 1.3 6.7L12 17.8 5.9 20.4 7.2 13.7 2.2 9.1l6.8-.9z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#ffcf6b"><path d="M12 2l2.9 6.2 6.8.9-5 4.6 1.3 6.7L12 17.8 5.9 20.4 7.2 13.7 2.2 9.1l6.8-.9z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#ffcf6b"><path d="M12 2l2.9 6.2 6.8.9-5 4.6 1.3 6.7L12 17.8 5.9 20.4 7.2 13.7 2.2 9.1l6.8-.9z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#ffcf6b"><path d="M12 2l2.9 6.2 6.8.9-5 4.6 1.3 6.7L12 17.8 5.9 20.4 7.2 13.7 2.2 9.1l6.8-.9z"/></svg>
+        </div>
+        <p>“晚上下班回家打开就能看，画质稳定，字幕准确。星空无限在线传媒的推荐页做得挺细，经常能刷到不错的小众片。”</p>
+        <div class="who">
+          <div class="av"><svg viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="q1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7fb2ff"/><stop offset="1" stop-color="#6a5bff"/></linearGradient></defs><rect width="40" height="40" fill="url(#q1)"/><circle cx="20" cy="15" r="7" fill="#eef3ff"/><path d="M5 40 Q20 24 35 40Z" fill="#eef3ff"/></svg></div>
+          <div><b>陈默</b><small>普通观众</small></div>
+        </div>
+      </div>
+      <div class="quote">
+        <div class="stars5">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#ffcf6b"><path d="M12 2l2.9 6.2 6.8.9-5 4.6 1.3 6.7L12 17.8 5.9 20.4 7.2 13.7 2.2 9.1l6.8-.9z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#ffcf6b"><path d="M12 2l2.9 6.2 6.8.9-5 4.6 1.3 6.7L12 17.8 5.9 20.4 7.2 13.7 2.2 9.1l6.8-.9z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#ffcf6b"><path d="M12 2l2.9 6.2 6.8.9-5 4.6 1.3 6.7L12 17.8 5.9 20.4 7.2 13.7 2.2 9.1l6.8-.9z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#ffcf6b"><path d="M12 2l2.9 6.2 6.8.9-5 4.6 1.3 6.7L12 17.8 5.9 20.4 7.2 13.7 2.2 9.1l6.8-.9z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#ffcf6b"><path d="M12 2l2.9 6.2 6.8.9-5 4.6 1.3 6.7L12 17.8 5.9 20.4 7.2 13.7 2.2 9.1l6.8-.9z"/></svg>
+        </div>
+        <p>“作为创作者，最打动我的是他们的扶持计划。从选题到上线，团队给了很多实际建议，作品也真的被看见了。”</p>
+        <div class="who">
+          <div class="av"><svg viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="q2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffcf6b"/><stop offset="1" stop-color="#ff7fa8"/></linearGradient></defs><rect width="40" height="40" fill="url(#q2)"/><circle cx="20" cy="15" r="7" fill="#fff6e6"/><path d="M5 40 Q20 24 35 40Z" fill="#fff6e6"/></svg></div>
+          <div><b>程一诺</b><small>独立导演</small></div>
+        </div>
+      </div>
+      <div class="quote">
+        <div class="stars5">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#ffcf6b"><path d="M12 2l2.9 6.2 6.8.9-5 4.6 1.3 6.7L12 17.8 5.9 20.4 7.2 13.7 2.2 9.1l6.8-.9z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#ffcf6b"><path d="M12 2l2.9 6.2 6.8.9-5 4.6 1.3 6.7L12 17.8 5.9 20.4 7.2 13.7 2.2 9.1l6.8-.9z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#ffcf6b"><path d="M12 2l2.9 6.2 6.8.9-5 4.6 1.3 6.7L12 17.8 5.9 20.4 7.2 13.7 2.2 9.1l6.8-.9z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#ffcf6b"><path d="M12 2l2.9 6.2 6.8.9-5 4.6 1.3 6.7L12 17.8 5.9 20.4 7.2 13.7 2.2 9.1l6.8-.9z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#ffcf6b"><path d="M12 2l2.9 6.2 6.8.9-5 4.6 1.3 6.7L12 17.8 5.9 20.4 7.2 13.7 2.2 9.1l6.8-.9z"/></svg>
+        </div>
+        <p>“家里人都爱看纪录片，家庭会员正好。孩子用儿童模式，我自己看剧，互不打扰，这点真的很贴心。”</p>
+        <div class="who">
+          <div class="av"><svg viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="q3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#25d0ff"/><stop offset="1" stop-color="#2f7bff"/></linearGradient></defs><rect width="40" height="40" fill="url(#q3)"/><circle cx="20" cy="15" r="7" fill="#e6fbff"/><path d="M5 40 Q20 24 35 40Z" fill="#e6fbff"/></svg></div>
+          <div><b>何佳</b><small>家庭会员用户</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">FAQ</div>
+      <h2>常见<span class="grad">问题</span></h2>
+      <p class="sub">关于观看、内容与会员权益，这里可能有你想要的答案。</p>
+    </div>
+
+    <div class="faq">
+      <div class="qitem">
+        <button class="qhead">
+          星空无限在线传媒真的可以免费中文观看吗？
+          <span class="plus"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#cfe0ff" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="qbody"><p>是的。基础片库对所有人开放，无需注册即可观看，并提供完整中文字幕。会员方案主要面向希望获得更高画质、专属内容与多端同步的用户，属于可选升级，不影响免费观看体验。</p></div>
+      </div>
+      <div class="qitem">
+        <button class="qhead">
+          页面支持哪些设备观看？
+          <span class="plus"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#cfe0ff" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="qbody"><p>页面基于响应式设计，手机、平板、笔记本与桌面浏览器均可直接使用。会员账号支持多端同步观看进度，换设备也能从上次的位置继续看。</p></div>
+      </div>
+      <div class="qitem">
+        <button class="qhead">
+          内容多久更新一次？
+          <span class="plus"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#cfe0ff" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="qbody"><p>常规剧集与短剧按周更新，纪录片与电影以月度专题形式上线，直播间每天固定时段开播。首页的“编辑推荐”每周刷新一次，方便你快速找到当周新内容。</p></div>
+      </div>
+      <div class="qitem">
+        <button class="qhead">
+          播放不流畅怎么办？
+          <span class="plus"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#cfe0ff" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="qbody"><p>播放器会根据网络环境自动调整清晰度。如果出现卡顿，建议检查网络连接，或在播放设置中手动切换画质。仍然无法解决时，可以通过页面底部的联系方式反馈。</p></div>
+      </div>
+      <div class="qitem">
+        <button class="qhead">
+          如何成为内容创作者？
+          <span class="plus"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#cfe0ff" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="qbody"><p>我们长期开放创作者合作通道，接受短片、纪录片、动画与微短剧项目提案。页面底部提供合作入口，提交作品简介与样片后，编辑团队会在合理时间内给出反馈。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="sec">
+  <div class="wrap">
+    <div class="cta-band">
+      <div class="eyebrow" style="justify-content:center">START WATCHING</div>
+      <h2>今晚，去星空里<span class="grad">看点什么</span></h2>
+      <p>星空无限在线传媒，把好内容放进你的夜晚。免费中文观看，从这一刻开始。</p>
+      <div class="hero-actions">
+        <a href="#featured" class="btn btn-main">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          免费观看内容
+        </a>
+        <a href="#plans" class="btn btn-ghost">查看会员权益</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#top" class="logo">
+          <svg class="mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="lg2" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#6f9bff"/><stop offset=".55" stop-color="#7a5cff"/><stop offset="1" stop-color="#25d0ff"/>
+              </linearGradient>
+            </defs>
+            <circle cx="20" cy="20" r="18" stroke="url(#lg2)" stroke-width="2"/>
+            <path d="M16 13.5 27 20l-11 6.5z" fill="url(#lg2)"/>
+            <circle cx="32" cy="9" r="2.2" fill="#25d0ff"/>
+            <circle cx="8" cy="30" r="1.6" fill="#ffcf6b"/>
+          </svg>
+          <span>星空无限</span>
+        </a>
+        <p>星空无限在线传媒，聚合影视、综艺、纪录片与短剧内容，提供免费中文观看体验，陪伴每一个值得被记住的夜晚。</p>
+      </div>
+      <div class="foot-col">
+        <h5>内容频道</h5>
+        <a href="#content">电影长片</a>
+        <a href="#content">综艺娱乐</a>
+        <a href="#content">纪录片</a>
+        <a href="#content">微短剧</a>
+      </div>
+      <div class="foot-col">
+        <h5>服务支持</h5>
+        <a href="#faq">常见问题</a>
+        <a href="#plans">会员权益</a>
+        <a href="#live">放映厅排期</a>
+        <a href="#top">帮助中心</a>
+      </div>
+      <div class="foot-col">
+        <h5>关于我们</h5>
+        <a href="#top">品牌介绍</a>
+        <a href="#top">创作者合作</a>
+        <a href="#top">加入我们</a>
+        <a href="#top">联系方式</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2024 星空无限在线传媒 · 保留所有权利</span>
+      <div class="links">
+        <a href="#top">隐私政策</a>
+        <a href="#top">服务条款</a>
+        <a href="#top">内容声明</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* ---------- 星空背景 ---------- */
+  var starBox = document.getElementById('stars');
+  if (starBox) {
+    var total = 90;
+    var frag = document.createDocumentFragment();
+    for (var i = 0; i < total; i++) {
+      var s = document.createElement('i');
+      s.className = 'star';
+      var size = (Math.random() * 2 + 0.6).toFixed(2);
+      s.style.width = size + 'px';
+      s.style.height = size + 'px';
+      s.style.left = (Math.random() * 100).toFixed(2) + '%';
+      s.style.top = (Math.random() * 100).toFixed(2) + '%';
+      s.style.animationDelay = (Math.random() * 5).toFixed(2) + 's';
+      s.style.animationDuration = (3 + Math.random() * 4).toFixed(2) + 's';
+      frag.appendChild(s);
+    }
+    starBox.appendChild(frag);
+  }
+
+  /* ---------- 移动端菜单 ---------- */
+  var burger = document.getElementById('burger');
+  var menu = document.getElementById('mobileMenu');
+  if (burger && menu) {
+    burger.addEventListener('click', function(){
+      menu.classList.toggle('on');
+    });
+    menu.addEventListener('click', function(e){
+      if (e.target.tagName === 'A') menu.classList.remove('on');
+    });
+    window.addEventListener('resize', function(){
+      if (window.innerWidth > 760) menu.classList.remove('on');
+    });
+  }
+
+  /* ---------- FAQ 展开 ---------- */
+  var items = document.querySelectorAll('.qitem');
+  items.forEach(function(item){
+    var head = item.querySelector('.qhead');
+    var body = item.querySelector('.qbody');
+    head.addEventListener('click', function(){
+      var isOpen = item.classList.contains('open');
+      items.forEach(function(o){
+        o.classList.remove('open');
+        var ob = o.querySelector('.qbody');
+        if (ob) ob.style.maxHeight = '0px';
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        body.style.maxHeight = body.scrollHeight + 40 + 'px';
+      }
+    });
+  });
+
+  /* ---------- 头部滚动态 ---------- */
+  var header = document.getElementById('site-header');
+  window.addEventListener('scroll', function(){
+    if (!header) return;
+    if (window.scrollY > 24) {
+      header.style.background = 'rgba(5,7,20,.9)';
+      header.style.boxShadow = '0 10px 30px rgba(0,0,0,.35)';
+    } else {
+      header.style.background = 'rgba(5,7,20,.72)';
+      header.style.boxShadow = 'none';
+    }
+  }, {passive:true});
+
+  /* ---------- 平滑锚点 ---------- */
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href');
+      if (id === '#' || id.length < 2) return;
+      var el = document.querySelector(id);
+      if (!el) return;
+      e.preventDefault();
+      var top = el.getBoundingClientRect().top + window.pageYOffset - 78;
+      window.scrollTo({top: top, behavior: 'smooth'});
+    });
+  });
+
+  /* ---------- 进入视口动画 ---------- */
+  var revealEls = document.querySelectorAll('.cat,.show,.creator,.step,.plan,.quote,.panel,.stat,.cta-band');
+  revealEls.forEach(function(el){
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity .7s ease, transform .7s ease';
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          var el = entry.target;
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+          io.unobserve(el);
+        }
+      });
+    }, {threshold: 0.12, rootMargin: '0px 0px -40px 0px'});
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    });
+  }
+
+  /* ---------- 数字滚动 ---------- */
+  function animateNumber(el){
+    var raw = el.textContent;
+    var num = parseFloat(raw.replace(/[^\d.]/g, ''));
+    if (isNaN(num)) return;
+    var suffix = raw.replace(/[\d.,]/g, '');
+    var dur = 1200;
+    var start = performance.now();
+    function tick(now){
+      var p = Math.min((now - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      var val = num * eased;
+      var out = num >= 1000 ? Math.round(val).toLocaleString('en-US') : (num % 1 !== 0 ? val.toFixed(1) : Math.round(val));
+      el.textContent = out + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+      else el.textContent = raw;
+    }
+    requestAnimationFrame(tick);
+  }
+  var statNums = document.querySelectorAll('.stat b');
+  if ('IntersectionObserver' in window) {
+    var io2 = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          animateNumber(entry.target);
+          io2.unobserve(entry.target);
+        }
+      });
+    }, {threshold: 0.5});
+    statNums.forEach(function(el){ io2.observe(el); });
+  }
+})();
+</script>
+</body>
+            </html>
